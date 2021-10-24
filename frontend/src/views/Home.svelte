@@ -20,9 +20,14 @@
   }/${$user.chatEmbedSecret}`;
 
   onMount(() => {
-    if (!$user.hasYoutubeAuth) return;
-    youtubeColor = Color.gray;
-    youtubeText = "Click to refresh your Youtube auth";
+    if ($user.hasYoutubeAuth) {
+      youtubeColor = Color.gray;
+      youtubeText = "Click to refresh your Youtube auth";
+    }
+    if ($user.hasTwitchAuth) {
+      twitchColor = Color.gray;
+      twitchText = "Click to refresh your Twitch auth";
+    }
   });
 </script>
 
@@ -70,7 +75,7 @@
     <section>
       <h1>Your chat</h1>
       <div class="chat">
-        {#if $user.hasYoutubeAuth}
+        {#if $user.hasAuth}
           <div class="col">
             <Input
               label="OBS Embed Link"
@@ -101,7 +106,7 @@
       <Button
         type={ButtonType.button}
         color={twitchColor}
-        click={() => window.location.replace('/api/auth/google')}>
+        click={() => window.location.replace('/api/auth/twitch')}>
         <Icon name={BrandIcon.twitch} />
         {twitchText}
       </Button>

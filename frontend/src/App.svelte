@@ -23,7 +23,10 @@
       <Home />
     </Route>
     <Route path={paths.OAUTH_GOOGLE_CALLBACK}>
-      <OauthCallback name="Youtube" />
+      <OauthCallback name="Youtube" path="google" />
+    </Route>
+    <Route path={paths.OAUTH_TWITCH_CALLBACK}>
+      <OauthCallback name="Twitch" path="twitch" />
     </Route>
     <Route path={`${paths.CHAT}`}>
       <Chat token={$user.token} />
